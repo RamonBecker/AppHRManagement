@@ -13,9 +13,11 @@
 
 <br>
 
+{% if object %}
 <a href="{% url 'create_documento' object.id %}" class="btn btn-success">
     Adicionar documento
 </a>
+{% endif %}
 <br>
 
 {% for documento in object.documento_set.all %}
