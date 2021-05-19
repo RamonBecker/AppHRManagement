@@ -6,6 +6,7 @@ from django.views.generic import (
     DeleteView,
     CreateView
 )
+
 from .models import Funcionario
 
 
@@ -38,3 +39,4 @@ class FuncionarioNovo(CreateView):
         funcionario.user = User.objects.create(username=username)
         funcionario.save()
         return super(FuncionarioNovo, self).form_valid(form)
+

@@ -1,5 +1,5 @@
-from django.urls import reverse
 from django.views.generic import CreateView
+
 from .models import Documento
 
 
@@ -15,7 +15,3 @@ class DocumentoCreate(CreateView):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
-
-    def get_success_url(self):
-        return reverse('update_funcionario', args=[self.kwargs['funcionario_id']])
-
