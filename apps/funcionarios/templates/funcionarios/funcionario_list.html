@@ -15,4 +15,6 @@
     {% endfor %}
 
     <a href="{% url 'create_funcionario' %}" class="btn btn-info"> Novo </a>
+    <a href="{% url 'relatorio_funcionarios_pdf_reportlab' %}" class="btn btn-info">Gerar relatório funcionários com pdf report lab</a>
+
 {% endblock %}
