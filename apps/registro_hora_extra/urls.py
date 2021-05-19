@@ -5,7 +5,8 @@ from .views import (
     HoraExtraEditBase,
     HoraExtraDelete,
     HoraExtraNovo,
-    UtilizouHoraExtra
+    UtilizouHoraExtra,
+    ExportarParaCSV
 )
 
 urlpatterns = [
@@ -16,4 +17,5 @@ urlpatterns = [
     path('utilizou-hora-extra/<int:pk>/',
          UtilizouHoraExtra.as_view(), name='utilizou_hora_extra'),
     path('delete/<int:pk>/', HoraExtraDelete.as_view(), name='delete_hora_extra'),
+    path('exportar-cvs', ExportarParaCSV.as_view(), name='exportar_cvs'),
 ]
