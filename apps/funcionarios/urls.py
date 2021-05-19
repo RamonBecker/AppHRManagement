@@ -4,7 +4,8 @@ from .views import (
     FuncionarioEdit,
     FuncionarioDelete,
     FuncionarioNovo,
-    relatorio_funcionarios_pdf_reportlab
+    relatorio_funcionarios_pdf_reportlab,
+    Pdf
 )
 
 urlpatterns = [
@@ -13,5 +14,6 @@ urlpatterns = [
     path('editar/<int:pk>/', FuncionarioEdit.as_view(), name='update_funcionario'),
     path('delete/<int:pk>/', FuncionarioDelete.as_view(), name='delete_funcionario'),
     path('relatorio-funcionarios-pdf-reportlab/', relatorio_funcionarios_pdf_reportlab, name='relatorio_funcionarios_pdf_reportlab'),
+    path('relatorio-funcionarios-html/', Pdf.as_view(), name='relatorio_funcionarios_html'),
 
 ]

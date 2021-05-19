@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import (
     ListView,
     UpdateView,
@@ -9,6 +10,9 @@ from django.views.generic import (
 import io
 from django.http import FileResponse, HttpResponse
 from reportlab.pdfgen import canvas
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+# import xhtml2pdf.pisa as pisa
 
 from .models import Funcionario
 
@@ -58,7 +62,6 @@ def relatorio_funcionarios_pdf_reportlab(request):
     funcionarios = Funcionario.objects.filter(empresa=request.user.funcionario.empresa)
     p.drawString(0, 800, "_" * 150)
 
-
     # Draw things on the PDF. Here's where the PDF generation happens.
     # See the ReportLab documentation for the full list of functionality.
     y = 750
@@ -72,3 +75,29 @@ def relatorio_funcionarios_pdf_reportlab(request):
     buffer.close()
     response.write(pdf)
     return response
+
+
+class Render:
+    @staticmethod
+    def render(path: str, params: dict, filename: str):
+        template = get_template(path)
+        html = template.render(params)
+        response = io.BytesIO()
+        pdf = pisa.pisaDocument(io.BytesIO(html.encode("UTF-8")), response)
+
+        if not pdf.err:
+            response = HttpResponse(response.getvalue(), content_type='application/pdf')
+            response['Content-Disposition'] = 'attachment; filename=%s.pdf' % filename
+            return response
+        else:
+            return HttpResponse("Erro na criação do relatório", status=400)
+
+
+class Pdf(View):
+    def get(self, request):
+        params = {
+            'today': 'Variavel today',
+            'sales': 'Variavel sales',
+            'request': request
+        }
+        return Render.render('funcionarios/relatorio.html', params, 'myfile')
