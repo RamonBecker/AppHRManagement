@@ -23,7 +23,8 @@ INSTALLED_APPS = [
     'apps.core',
     'bootstrapform',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'django_celery_results',
 
 ]
 
@@ -104,3 +105,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 LOGIN_REDIRECT_URL = 'home'
 
 LOGOUT_REDIRECT_URL = 'login'
+
+#Configuração para armazenar os dados de cada execução das tasks do celery
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_BROKER_URL = ['redis://127.0.0.1:6379']
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
