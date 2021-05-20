@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 from apps.core.serializers import GroupSerializer, UserSerializer
-from apps.funcionarios.models import Funcionario
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
