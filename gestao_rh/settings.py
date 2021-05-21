@@ -1,5 +1,7 @@
 import os
 
+from gestao_rh.local_settings import EMAIL_USER, EMAIL_PASSWORD
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'wmy(n$=uo7%d%b23_ah)q+ywi-f6d!y%2d4pvp5ctf6c8su)c$'
@@ -107,7 +109,23 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
 
 #Configuração para armazenar os dados de cada execução das tasks do celery
+
 CELERY_RESULT_BACKEND = 'django-db'
-CELERY_BROKER_URL = ['redis://127.0.0.1:6379']
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = EMAIL_USER
+EMAIL_HOST_PASSWORD = EMAIL_PASSWORD
+EMAIL_PORT = 465
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = 'default from email'
+
+
+
+

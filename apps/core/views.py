@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
@@ -5,7 +6,7 @@ from apps.core.serializers import GroupSerializer, UserSerializer
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
-
+from .tasks import send_relatorio
 
 @login_required
 def home(request):
@@ -30,3 +31,8 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+def celery(request):
+    send_relatorio()
+    return HttpResponse('Tarefa incluida na fila para execução')
