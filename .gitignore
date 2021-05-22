@@ -5,3 +5,9 @@ __pycache__
 *.pyc
 gestao_rh/__pycache__/
 local_settings.py
+uwsgi.ini
+uwsgi_params
+*.bak
+*.dat
+*.pid
+*.dir
