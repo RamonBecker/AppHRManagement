@@ -4,9 +4,7 @@ from gestao_rh.local_settings import *
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'wmy(n$=uo7%d%b23_ah)q+ywi-f6d!y%2d4pvp5ctf6c8su)c$'
 
-DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -77,7 +75,15 @@ DATABASES = {
         'USER': DB_USER_POSTGRES,
         'PASSWORD': DB_PASSWORD_POSTGRES,
         'HOST': DB_HOST_POSTGRES,
-        'POST': '',
+        'PORT': '',
+    },
+    'mysql': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': DB_NAME_MYSQL,
+        'USER': DB_USER_MYSQL,
+        'PASSWORD': DB_PASSWORD_MYSQL,
+        'HOST': DB_HOST_MYSQL,
+        'PORT': '',
     }
 }
 
