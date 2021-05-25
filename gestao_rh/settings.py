@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_celery_results',
     'django_celery_beat',
+    'apps.app_antiga',
 
 ]
 
@@ -62,23 +63,34 @@ TEMPLATES = [
 WSGI_APPLICATION = 'gestao_rh.wsgi.application'
 
 DATABASES = {
-   'default': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'dbnovo.sqlite3'),
+    },
+    'antigo': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'dbantigo.sqlite3'),
+    },
+    'postgres': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': DB_NAME_POSTGRES,
+        'USER': DB_USER_POSTGRES,
+        'PASSWORD': DB_PASSWORD_POSTGRES,
+        'HOST': DB_HOST_POSTGRES,
+        'POST': '',
     }
 }
 
-
-#DATABASES = {
- #   'default': {
-  #      'ENGINE': 'django.db.backends.mysql',
-   #     'NAME': DB_NAME,
-    #    'USER': DB_USER,
-     #   'PASSWORD': DB_PASSWORD,
-      #  'HOST': DB_HOST,
-       # 'PORT': '',
-    #}
-#}
+# DATABASES = {
+#   'default': {
+#      'ENGINE': 'django.db.backends.mysql',
+#     'NAME': DB_NAME,
+#    'USER': DB_USER,
+#   'PASSWORD': DB_PASSWORD,
+#  'HOST': DB_HOST,
+# 'PORT': '',
+# }
+# }
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -122,19 +134,19 @@ LOGIN_REDIRECT_URL = 'home'
 
 LOGOUT_REDIRECT_URL = 'login'
 
-#Configuração para armazenar os dados de cada execução das tasks do celery
+# Configuração para armazenar os dados de cada execução das tasks do celery
 
 # celery setting.
-#CELERY_CACHE_BACKEND = 'default'
+# CELERY_CACHE_BACKEND = 'default'
 
 # django setting.
-#CACHES = {
- #   'default': {
-  #      'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-   #     'LOCATION': 'my_cache_table',
-   # }
-#}
-CELERY_RESULT_BACKEND = 'django-db'
+# CACHES = {
+#   'default': {
+#      'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+#     'LOCATION': 'my_cache_table',
+# }
+# }
+CELERY_RESULT_BACKEND = 'db'
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
@@ -149,6 +161,4 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = 'default from email'
 
-
-
-
+DATABASE_ROUTERS = ['gestao_rh.DBRoutes.DBRoutes']
