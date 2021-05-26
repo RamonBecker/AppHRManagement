@@ -3,10 +3,7 @@ import os
 from gestao_rh.local_settings import *
 from django.utils.translation import gettext_lazy as _
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
 
 ALLOWED_HOSTS = ['*']
 
@@ -29,7 +26,6 @@ INSTALLED_APPS = [
     'django_celery_results',
     'django_celery_beat',
     'apps.app_antiga',
-
 ]
 
 MIDDLEWARE = [

@@ -2,25 +2,84 @@
 {% load i18n %}.
 
 {% block main %}
+    <br>
    <div class="row">
-    <div class="col-sm">
-        {% trans "One of three columns" %}
+       <div class="col">
+        <div class="card border-primary mb-3" style="max-width: 35rem;">
+            <div class="card-header">
+                <h3 style="text-align: center;">
+                    Funcionários
+                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                </h3>
+            </div>
+                <div class="card-body text">
+                    <h5 class="card-title">
+                        Informações <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </h5>
 
-    </div>
-    <div class="col-sm">
-     {% trans "Ola" %} {{ usuario.funcionario.nome }}
-        <a href="{% url 'list_funcionarios' %}">Generenciar funcionarios</a>
-        <a href="{% url 'list_departamentos' %}">Generenciar departamentos</a>
-        <a href="{% url 'list_hora_extra' %}">Generenciar Banco de horas</a>
-    </div>
-    <div class="col-sm">
-        <a href="{% url 'logout' %}">Logout</a>
 
-        {% if usuario.funcionario.empresa %}
-            <a href="{% url 'edit_empresa' usuario.funcionario.empresa.id %}">Editar empresa</a>
-        {% else %}
-            <a href="{% url 'create_empresa' %}">Criar empresa</a>
-        {% endif %}
+                        <li>
+                            Número de funcionários: {{ total_funcionarios }}
+                        </li>
+                        <li>
+                            Número de funcionários de férias: {{ total_funcionarios_ferias }}
+                        </li>
+                        <li>
+                            Número de funcionários com documentos pendentes: {{ total_funcionarios_doc_pendentes }}
+                        </li>
+
+                </div>
+        </div>
+    </div>
+              <div class="col">
+        <div class="card border-primary mb-3" style="max-width: 35rem;">
+            <div class="card-header">
+                <h3 style="text-align: center;"> Banco de horas
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                </h3>
+            </div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Informações <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </h5>
+
+                        <li>
+                            Banco de horas pendentes: {{ aa }}
+                        </li>
+                        <li>
+                            Banco de horas tirado: {{ aa }}
+                        </li>
+
+                </div>
+        </div>
+    </div>
+       <div class="col">
+        <div class="card border-primary mb-2" style="max-width: 35rem;">
+            <div class="card-header">
+                <h3 style="text-align: center;"> Documentos
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                </h3>
+            </div>
+                <div class="card-body text">
+                    <h5 class="card-title">
+                        Informações <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </h5>
+
+                        <li>
+                            Total funcionários com documentos sem pendências: {{ aa }}
+                        </li>
+                        <li>
+                            Total funcionários com documentos faltantes: {{ aa }}
+                        </li>
+                        <li>
+                            Total funcionários com RG não inseridos: {{ aa }}
+                        </li>
+
+                </div>
+        </div>
     </div>
   </div>
+
+<script src="https://use.fontawesome.com/05cc4e9f7a.js"></script>
+
 {% endblock %}
