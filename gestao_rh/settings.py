@@ -1,6 +1,8 @@
 import os
 
 from gestao_rh.local_settings import *
+from django.utils.translation import gettext_lazy as _
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -33,6 +35,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -53,6 +56,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -86,18 +90,6 @@ DATABASES = {
         'PORT': '',
     }
 }
-
-# DATABASES = {
-#   'default': {
-#      'ENGINE': 'django.db.backends.mysql',
-#     'NAME': DB_NAME,
-#    'USER': DB_USER,
-#   'PASSWORD': DB_PASSWORD,
-#  'HOST': DB_HOST,
-# 'PORT': '',
-# }
-# }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -168,3 +160,13 @@ EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = 'default from email'
 
 DATABASE_ROUTERS = ['gestao_rh.DBRoutes.DBRoutes']
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('pt', _('Portugues')),
+    ('es', _('Spanish')),
+]
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
