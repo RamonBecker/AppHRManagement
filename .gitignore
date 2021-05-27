@@ -11,3 +11,5 @@ uwsgi_params
 *.dat
 *.pid
 *.dir
+media
+media/documentos
