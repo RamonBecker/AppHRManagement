@@ -44,12 +44,19 @@
                     </h5>
 
                         <li>
-                            Banco de horas pendentes: {{ aa }}
+                            {% if total_hora_extra_pendentes is None %}
+                             Horas pendentes: 0
+                            {% else %}
+                            Horas pendentes: {{ total_hora_extra_pendentes }}
+                            {% endif %}
                         </li>
                         <li>
-                            Banco de horas tirado: {{ aa }}
+                            {% if total_hora_extra_utilizadas is None %}
+                            Horas utilizadas: 0
+                            {% else %}
+                            Horas utilizadas: {{ total_hora_extra_utilizadas }}
+                            {% endif %}
                         </li>
-
                 </div>
         </div>
     </div>
@@ -66,15 +73,11 @@
                     </h5>
 
                         <li>
-                            Total funcionários com documentos sem pendências: {{ aa }}
+                            Total funcionários com documentos sem pendências: {{ total_funcionarios_doc_ok }}
                         </li>
                         <li>
-                            Total funcionários com documentos faltantes: {{ aa }}
+                            Total funcionários com documentos em pendências: {{ total_funcionarios_doc_pendente }}
                         </li>
-                        <li>
-                            Total funcionários com RG não inseridos: {{ aa }}
-                        </li>
-
                 </div>
         </div>
     </div>

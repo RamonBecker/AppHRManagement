@@ -2,17 +2,22 @@
 
 {% block main %}
 
-    List
+<div class="alert alert-primary" role="alert">
+
+        Lista de departamentos
+
+</div>
 <br>
     {% for departamento in object_list %}
         <a href="{% url 'update_departamento' departamento.id %}">
             {{ departamento }}
         </a>
-        <a href="{% url 'delete_departamento' departamento.id %}">
+ <br>
+        <a class="btn btn-danger"  href="{% url 'delete_departamento' departamento.id %}">
             Deletar
         </a>
         <br>
     {% endfor %}
-
+         <br>
     <a href="{% url 'create_departamento' %}" class="btn btn-info"> Novo </a>
 {% endblock %}

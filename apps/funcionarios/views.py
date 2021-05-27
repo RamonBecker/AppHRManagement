@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import (
@@ -14,8 +15,11 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 # import xhtml2pdf.pisa as pisa
 from django.utils.translation import gettext as _
+from django.core import serializers
+from django.http import HttpResponse
 
 from .models import Funcionario
+from ..departamentos.models import Departamento
 
 
 class FuncionariosList(ListView):
@@ -107,3 +111,4 @@ class Pdf(View):
             'request': request
         }
         return Render.render('funcionarios/relatorio.html', params, 'myfile')
+

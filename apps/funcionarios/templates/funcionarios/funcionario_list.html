@@ -1,19 +1,23 @@
 {% extends 'base.html' %}
 
 {% block main %}
+<div class="alert alert-primary" role="alert">
 
-    List
+        Lista de funcionários
+
+</div>
 <br>
     {% for funcionario in object_list %}
         <a href="{% url 'update_funcionario' funcionario.id %}">
             {{ funcionario }}
         </a>
-        <a href="{% url 'delete_funcionario' funcionario.id %}">
+    <br>
+        <a class="btn btn-danger" href="{% url 'delete_funcionario' funcionario.id %}">
             Deletar
         </a>
         <br>
     {% endfor %}
-
+      <br>
     <a href="{% url 'create_funcionario' %}" class="btn btn-info"> {{ report_button }} </a>
     <a href="{% url 'relatorio_funcionarios_pdf_reportlab' %}" class="btn btn-info">Relatório funcionários com pdf report lab</a>
     <a href="{% url 'relatorio_funcionarios_html' %}" class="btn btn-info">Relatório funcionários com html</a>
